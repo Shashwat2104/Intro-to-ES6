@@ -1,1 +1,76 @@
 
+function outerFunction() {
+    const message = "Hello from the outer scope!"; // Variable defined in outerFunction's scope
+
+    return function innerFunction() {
+        console.log(message); // Inner function logs the message
+    };
+}
+
+// Demonstrate closure:
+const closureExample = outerFunction(); // outerFunction completes execution here
+closureExample(); // Logs: "Hello from the outer scope!"
+
+
+
+
+
+
+
+
+function createCounter() {
+    let count = 0; // Private variable (cannot be accessed directly outside)
+
+    return {
+        increment: function() {
+            count++;
+            return count; // Return updated count (optional)
+        },
+        getCount: function() {
+            return count; // Return current count
+        }
+    };
+}
+
+// Demo Usage
+const counter = createCounter();
+
+console.log(counter.increment()); // Output: 1
+console.log(counter.increment()); // Output: 2
+console.log(counter.getCount());   // Output: 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function createFunctionList() {
+  let functions = [];
+  for (let i = 0; i < 5; i++) { // `let` creates a new `i` for each iteration
+    functions.push(function () {
+      console.log("Index:", i); // Correctly captures the current `i`
+    });
+  }
+  return functions;
+}
+
+function createFunctionList() {
+  let functions = [];
+  for (var i = 0; i < 5; i++) {
+    (function (index) { // IIFE captures `i` as `index`
+      functions.push(function () {
+        console.log("Index:", index); // Uses the captured `index`
+      });
+    })(i); // Pass `i` to the IIFE
+  }
+  return functions;
+}
