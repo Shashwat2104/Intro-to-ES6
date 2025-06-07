@@ -1,0 +1,50 @@
+use ToDoList_DB
+
+db.tasks.insertMany([
+  {
+    task_id: 1,
+    task_name: "Buy groceries",
+    description: "Purchase vegetables, fruits, and milk",
+    status: "pending"
+  },
+  {
+    task_id: 2,
+    task_name: "Complete project report",
+    description: "Finish writing and submit the project report",
+    status: "in-progress"
+  },
+  {
+    task_id: 3,
+    task_name: "Pay electricity bill",
+    description: "Pay the monthly electricity bill online",
+    status: "completed"
+  },
+  {
+    task_id: 4,
+    task_name: "Schedule dentist appointment",
+    description: "Call the dentist and schedule an appointment",
+    status: "pending"
+  },
+  {
+    task_id: 5,
+    task_name: "Organize bookshelf",
+    description: "Rearrange books alphabetically",
+    status: "in-progress"
+  }
+])
+
+db.tasks.find({ status: "pending" }).pretty()
+
+db.tasks.updateOne(
+  { task_id: 2 },
+  { $set: { status: "completed" } }
+)
+
+db.tasks.deleteOne({ task_id: 5 })
+
+db.tasks.findOne({ task_name: "Buy groceries" })
+
+db.tasks.updateOne(
+  { task_id: 4 },
+  { $set: { description: "Call and schedule a dental appointment at 2 PM." } }
+)
