@@ -1,0 +1,45 @@
+use Library_DB
+
+db.books.insertMany([
+  {
+    book_id: 1,
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    genre: "fiction",
+    available: true
+  },
+  {
+    book_id: 2,
+    title: "Becoming",
+    author: "Michelle Obama",
+    genre: "non-fiction",
+    available: false
+  },
+  {
+    book_id: 3,
+    title: "The Da Vinci Code",
+    author: "Dan Brown",
+    genre: "thriller",
+    available: true
+  },
+  {
+    book_id: 4,
+    title: "1984",
+    author: "George Orwell",
+    genre: "fiction",
+    available: true
+  },
+  {
+    book_id: 5,
+    title: "Sapiens",
+    author: "Yuval Noah Harari",
+    genre: "non-fiction",
+    available: false
+  }
+])
+
+db.books.find().pretty()
+
+db.books.find({ genre: "fiction" }).pretty()
+
+db.books.find({ available: true }).pretty()
