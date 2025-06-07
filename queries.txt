@@ -1,0 +1,45 @@
+use Order_DB
+
+db.orders.insertMany([
+  {
+    order_id: 101,
+    customer_name: "Alice Johnson",
+    items: ["Laptop", "Mouse"],
+    total_amount: 45000,
+    order_status: "pending"
+  },
+  {
+    order_id: 102,
+    customer_name: "Bob Smith",
+    items: ["Smartphone"],
+    total_amount: 15000,
+    order_status: "shipped"
+  },
+  {
+    order_id: 103,
+    customer_name: "Catherine Green",
+    items: ["Book", "Pen"],
+    total_amount: 500,
+    order_status: "delivered"
+  },
+  {
+    order_id: 104,
+    customer_name: "David Lee",
+    items: ["Desk Chair", "Lamp"],
+    total_amount: 7000,
+    order_status: "pending"
+  },
+  {
+    order_id: 105,
+    customer_name: "Eva Adams",
+    items: ["Headphones"],
+    total_amount: 1200,
+    order_status: "delivered"
+  }
+])
+
+db.orders.find().pretty()
+
+db.orders.find({ order_status: "pending" }).pretty()
+
+db.orders.find({ total_amount: { $gt: 1000 } }).pretty()
